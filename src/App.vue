@@ -11,19 +11,19 @@
     </v-app-bar>
 
     <v-content>
-      <HelloWorld/>
+      <SearchWrapper/>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import SearchWrapper from './components/SearchWrapper.vue';
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+    SearchWrapper,
   },
 
   data: () => ({

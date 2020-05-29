@@ -15,7 +15,7 @@ import SearchBox from '@/components/SearchBox.vue';
 import SearchResults from '@/components/SearchResults.vue';
 
 export default {
-  name: 'HelloWorld',
+  name: 'SearchWrapper',
   components: {
     SearchBox,
     SearchResults,

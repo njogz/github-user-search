@@ -23,7 +23,7 @@
         <a :href="item.url" target="_blank">View Profile</a>
       </template>
     </v-data-table>
-    <p>{{ visibleRows() }} of {{ this.$store.getters.getUserCount }}</p>
+    <p v-if="userCount > 0">{{ visibleRows() }} of {{ userCount }}</p>
     <v-pagination
       v-if="paginationlength > 0"
       v-model="page"
@@ -71,19 +71,21 @@ export default {
       return this.$store.getters.fetchingUsers;
     },
     paginationlength() {
-      const totalPages = Math.ceil(this.$store.getters.getUserCount / 20);
+      const totalPages = Math.ceil(this.userCount / 20);
       // Restricted to only the first 1000 results
       // so can only go up to page 50 with 20 results per page
       return totalPages > 50 ? 50 : totalPages;
+    },
+    userCount() {
+      return this.$store.getters.getUserCount;
     },
   },
   methods: {
     visibleRows() {
       const first = (this.page - 1) * 20 + 1;
-      const totalUsers = this.$store.getters.getUserCount;
       let last = this.page * 20;
-      if (this.page === this.paginationlength && totalUsers < last) {
-        last = totalUsers;
+      if (this.page === this.paginationlength && this.userCount < last) {
+        last = this.userCount;
       }
       return `${first} - ${last}`;
     },

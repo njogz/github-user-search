@@ -17,10 +17,7 @@
         ></v-img>
       </template>
       <template v-slot:item.html_url="{ item }">
-        <a :href="item.html_url" target="_blank">View Profile</a>
-      </template>
-      <template v-slot:item.url="{ item }">
-        <a :href="item.url" target="_blank">View Profile</a>
+        <v-btn small @click="showProfile(item)">View</v-btn>
       </template>
     </v-data-table>
     <p v-if="userCount > 0">{{ visibleRows() }} of {{ userCount }}</p>
@@ -30,11 +27,23 @@
       :length="paginationlength"
       :total-visible="7"
     ></v-pagination>
+    <v-dialog
+      v-model="showDialog"
+      max-width="400"
+    >
+      <user-profile :url="activeProfile.url" :username="activeProfile.login" />
+    </v-dialog>
   </div>
 </template>
 
 <script>
+import UserProfile from './UserProfile.vue';
+
 export default {
+  name: 'SearchResults',
+  components: {
+    UserProfile,
+  },
   data() {
     return {
       headers: [
@@ -45,10 +54,11 @@ export default {
           value: 'avatar_url',
         },
         { text: 'Username', value: 'login' },
-        { text: 'HTML Profile', value: 'html_url', sortable: false },
-        { text: 'API Profile', value: 'url', sortable: false },
+        { text: 'View Profile', value: 'html_url', sortable: false },
       ],
       page: 1,
+      activeProfile: {},
+      showDialog: false,
     };
   },
   watch: {
@@ -88,6 +98,10 @@ export default {
         last = this.userCount;
       }
       return `${first} - ${last}`;
+    },
+    showProfile(item) {
+      this.activeProfile = item;
+      this.showDialog = true;
     },
   },
 };

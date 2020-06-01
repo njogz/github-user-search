@@ -30,4 +30,20 @@ export default {
       };
     }
   },
+  getUser: async ({ commit, getters }, user) => {
+    try {
+      if (!getters.getUser(user.name)) {
+        const { data } = await axios.get(user.url);
+        commit('SET_USER_PROFILE', { name: user.name, data });
+      }
+      return {
+        success: true,
+      };
+    } catch (err) {
+      return {
+        success: false,
+        error: err,
+      };
+    }
+  },
 };

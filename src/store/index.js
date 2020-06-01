@@ -9,6 +9,7 @@ export default new Vuex.Store({
     fetchingUsers: false,
     userPages: {},
     userCount: 0,
+    userProfiles: {},
   },
   mutations: {
     SET_USERS: (state, data) => {
@@ -29,6 +30,9 @@ export default new Vuex.Store({
     RESET_USERS: (state) => {
       Vue.set(state, 'userPages', {});
     },
+    SET_USER_PROFILE: (state, data) => {
+      Vue.set(state.userProfiles, data.name, data.data);
+    },
   },
   actions,
   getters: {
@@ -36,5 +40,6 @@ export default new Vuex.Store({
     fetchingUsers: (state) => state.fetchingUsers,
     getQuery: (state) => state.query,
     getUserCount: (state) => state.userCount,
+    getUser: (state) => (name) => state.userProfiles[name],
   },
 });

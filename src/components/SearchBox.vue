@@ -18,8 +18,7 @@ export default {
   }),
   methods: {
     search() {
-      console.log('searching');
-      this.$store.dispatch('searchUsers', this.searchQuery);
+      this.$store.dispatch('searchUsers', { query: this.searchQuery, page: 1 });
     },
   },
 };

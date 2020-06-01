@@ -6,12 +6,13 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    users: [],
     fetchingUsers: false,
+    userPages: {},
+    userCount: 0,
   },
   mutations: {
     SET_USERS: (state, data) => {
-      Vue.set(state, 'users', data);
+      Vue.set(state.userPages, data.page, data.data);
     },
     DONE_FETCHING: (state) => {
       Vue.set(state, 'fetchingUsers', false);
@@ -19,10 +20,21 @@ export default new Vuex.Store({
     FETCHING_USERS: (state) => {
       Vue.set(state, 'fetchingUsers', true);
     },
+    CURRENT_QUERY: (state, query) => {
+      Vue.set(state, 'query', query);
+    },
+    TOTAL_USER_COUNT: (state, count) => {
+      Vue.set(state, 'userCount', count);
+    },
+    RESET_USERS: (state) => {
+      Vue.set(state, 'userPages', {});
+    },
   },
   actions,
   getters: {
-    getUsers: (state) => state.users,
+    getPage: (state) => (page) => state.userPages[page],
     fetchingUsers: (state) => state.fetchingUsers,
+    getQuery: (state) => state.query,
+    getUserCount: (state) => state.userCount,
   },
 });

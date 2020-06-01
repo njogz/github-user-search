@@ -3,10 +3,10 @@
 exports[`SearchBox.vue Should match the saved snapshot 1`] = `
 <v-row-stub tag="div">
   <v-col-stub tag="div">
-    <v-text-field-stub errorcount="1" errormessages="" messages="" rules="" successmessages="" value="" backgroundcolor="" label="Search users" loaderheight="2" clearicon="$clear" type="text"></v-text-field-stub>
+    <v-text-field-stub errorcount="1" errormessages="" messages="" rules="" successmessages="" value="" backgroundcolor="" label="Search users" loaderheight="2" clearicon="$clear" type="text" data-query=""></v-text-field-stub>
   </v-col-stub>
   <v-col-stub tag="div">
-    <v-btn-stub tag="button" activeclass="" type="button" class="mr-4">search</v-btn-stub>
+    <v-btn-stub tag="button" activeclass="" type="button" data-search="" class="mr-4">search</v-btn-stub>
   </v-col-stub>
 </v-row-stub>
 `;

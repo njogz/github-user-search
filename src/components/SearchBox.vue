@@ -4,10 +4,11 @@
         <v-text-field
           v-model="searchQuery"
           label="Search users"
+          data-query
         ></v-text-field>
       </v-col>
       <v-col>
-        <v-btn class="mr-4" @click="search">search</v-btn>
+        <v-btn class="mr-4" @click="search" data-search>search</v-btn>
       </v-col>
   </v-row>
 </template>

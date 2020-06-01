@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchWrapper.vue Should match the saved snapshot 1`] = `
+<v-container-stub tag="div">
+  <v-row-stub tag="div">
+    <v-col-stub tag="div">
+      Search more than 40M Github users
+    </v-col-stub>
+  </v-row-stub>
+  <search-box-stub></search-box-stub>
+  <search-results-stub></search-results-stub>
+</v-container-stub>
+`;
